@@ -1,7 +1,7 @@
 {
-  outputs = inputs: {
+  outputs = {...}: {
     nixosModules = rec {
-      basic = import ./. inputs;
+      basic = import ./.;
       default = basic;
     };
   };
