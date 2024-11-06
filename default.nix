@@ -1,0 +1,5 @@
+{
+  config = {
+    test.value = "string";
+  };
+}
