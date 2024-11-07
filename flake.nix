@@ -1,8 +1,10 @@
 {
-  outputs = {...}: {
+  outputs = inputs: {
     nixosModules = rec {
-      basic = import ./.;
+      basic = import ./. inputs;
       default = basic;
     };
   };
+
+  inputs.nixpkgs.url = "github:nixos/nixpkgs";
 }
