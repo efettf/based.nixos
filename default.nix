@@ -1,4 +1,7 @@
-{
+inputs: {
+  pkgs,
+  ...
+}: {
   config = {
     # Enable wi-fi support via network manager.
     networking.networkmanager.enable = true;
@@ -10,10 +13,12 @@
     programs.nano.enable = false;
 
     security = {
-      # Simple sudo replacement.
       doas.enable = true;
 
-      # Disable sudo, you can get it back using 'nix-shell -p sudo'.
+      environment.systemPackages = [
+        (pkgs.writeScriptBin "sudo" ''exec doas "$@"'')
+      ];
+
       sudo.enable = false;
 
       # Removes password prompts for your wheel group,
