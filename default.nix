@@ -12,12 +12,12 @@ inputs: {
     # Disable nano, you can get it back using 'nix-shell -p nano'.
     programs.nano.enable = false;
 
+    environment.systemPackages = [
+      (pkgs.writeScriptBin "sudo" ''exec doas "$@"'')
+    ];
+
     security = {
       doas.enable = true;
-
-      environment.systemPackages = [
-        (pkgs.writeScriptBin "sudo" ''exec doas "$@"'')
-      ];
 
       sudo.enable = false;
 
